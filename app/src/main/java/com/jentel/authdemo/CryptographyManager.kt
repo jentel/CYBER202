@@ -56,7 +56,7 @@ fun CryptographyManager(): CryptographyManager = CryptographyManagerImpl()
 private class CryptographyManagerImpl : CryptographyManager {
 
     private val KEY_SIZE = 256
-    private val ANDROID_KEYSTORE = "AndroidKeystore"
+    private val ANDROID_KEYSTORE = "AndroidKeyStore"
     private val ENCRYPTION_BLOCK_MODE = KeyProperties.BLOCK_MODE_GCM
     private val ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_NONE
     private val ENCRYPTION_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES
