@@ -1,30 +1,31 @@
 package com.jentel.authdemo.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.inputmethod.EditorInfo
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
-import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.jentel.authdemo.databinding.ActivityEnableBiometricLoginBinding
 import com.jentel.authdemo.model.BiometricPromptUtils
 import com.jentel.authdemo.model.SampleAppUser
 import com.jentel.authdemo.util.CIPHERTEXT_WRAPPER
 import com.jentel.authdemo.util.CryptographyManager
-import com.jentel.authdemo.util.FailedLoginFormState
 import com.jentel.authdemo.util.SHARED_PREFS_FILENAME
-import com.jentel.authdemo.util.SuccessfulLoginFormState
-import com.jentel.authdemo.viewModel.LoginViewModel
+
 
 class EnableBiometricLoginActivity : AppCompatActivity() {
 
     private val TAG = EnableBiometricLoginActivity::class.simpleName
     private lateinit var cryptographyManager: CryptographyManager
-    private val loginViewModel by viewModels<LoginViewModel>()
+
+    private var customToken: String? = null
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,50 +33,9 @@ class EnableBiometricLoginActivity : AppCompatActivity() {
         val binding = ActivityEnableBiometricLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.cancel.setOnClickListener { finish() }
+        binding.authorize.setOnClickListener { (showBiometricPromptForEncryption()) }
 
-        loginViewModel.loginWithPasswordFormState.observe(this, Observer { formState ->
-            val loginState = formState ?: return@Observer
-            when(loginState) {
-                is SuccessfulLoginFormState -> binding.authorize.isEnabled = loginState.isDataValid
-                is FailedLoginFormState -> {
-                    loginState.usernameError?.let { binding.username.error = getString(it) }
-                    loginState.passwordError?.let { binding.password.error = getString(it) }
-                }
-            }
-        })
-
-        loginViewModel.loginResult.observe(this, Observer {
-            val loginResult = it ?: return@Observer
-            if(loginResult.success) {
-                showBiometricPromptForEncryption()
-            }
-        })
-
-        binding.username.doAfterTextChanged {
-            loginViewModel.onLoginDataChanged(
-                binding.username.text.toString(),
-                binding.password.text.toString()
-            )
-        }
-        binding.password.doAfterTextChanged {
-            loginViewModel.onLoginDataChanged(
-                binding.username.text.toString(),
-                binding.password.text.toString()
-            )
-        }
-        binding.password.setOnEditorActionListener { _, actionId, _ ->
-            when (actionId) {
-                EditorInfo.IME_ACTION_DONE ->
-                    loginViewModel.login(
-                        binding.username.text.toString(),
-                        binding.password.text.toString()
-                    )
-            }
-            false
-        }
-        binding.authorize.setOnClickListener {
-            loginViewModel.login(binding.username.text.toString(), binding.password.text.toString())
-        }
+       auth = Firebase.auth
     }
 
     private fun showBiometricPromptForEncryption() {
@@ -94,6 +54,7 @@ class EnableBiometricLoginActivity : AppCompatActivity() {
         authResult.cryptoObject?.cipher?.apply {
             SampleAppUser.fakeToken?.let { token ->
                 Log.d(TAG, "Token from the server is $token")
+
                 val encryptedServerTokenWrapper = cryptographyManager.encryptData(token, this)
                 cryptographyManager.persistCiphertextWrapperToSharedPrefs(
                     encryptedServerTokenWrapper,
@@ -102,6 +63,9 @@ class EnableBiometricLoginActivity : AppCompatActivity() {
                     Context.MODE_PRIVATE,
                     CIPHERTEXT_WRAPPER
                 )
+
+                val intent= Intent(applicationContext,MainActivity::class.java)
+                startActivity(intent)
             }
         }
         finish()

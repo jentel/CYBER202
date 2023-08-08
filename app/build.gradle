@@ -74,7 +74,6 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     implementation "androidx.biometric:biometric:1.1.0"
     implementation 'com.google.code.gson:gson:2.8.9'
-    //implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.google.firebase:firebase-bom:32.2.2'
     implementation 'com.google.firebase:firebase-auth-ktx:22.1.1'
     implementation("com.google.firebase:firebase-analytics-ktx:21.3.0")

@@ -2,6 +2,7 @@ package com.jentel.authdemo.model
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.jentel.authdemo.R
@@ -30,6 +31,8 @@ object BiometricPromptUtils {
 
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
+                processSuccess(result)
+
                 Log.d(TAG, "Authentication was successful!")
             }
         }
@@ -43,5 +46,6 @@ object BiometricPromptUtils {
             setDescription(activity.getString(R.string.prompt_info_description))
             setConfirmationRequired(false)
             setNegativeButtonText(activity.getString(R.string.prompt_info_use_app_password))
+            setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
         }.build()
 }

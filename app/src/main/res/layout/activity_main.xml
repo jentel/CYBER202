@@ -26,8 +26,9 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="135dp"
         android:onClick="signOut"
-        android:text="SIGN OUT"
+        android:text="@string/sign_out"
         android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
