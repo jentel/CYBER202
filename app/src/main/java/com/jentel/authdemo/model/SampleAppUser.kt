@@ -1,4 +1,4 @@
-package com.jentel.authdemo
+package com.jentel.authdemo.model
 
 object SampleAppUser {
     var fakeToken: String? = null

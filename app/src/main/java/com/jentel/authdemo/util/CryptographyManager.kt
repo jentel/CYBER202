@@ -1,4 +1,4 @@
-package com.jentel.authdemo
+package com.jentel.authdemo.util
 
 import android.content.Context
 import android.security.keystore.KeyGenParameterSpec

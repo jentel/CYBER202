@@ -1,9 +1,15 @@
-package com.jentel.authdemo
+package com.jentel.authdemo.viewModel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jentel.authdemo.R
+import com.jentel.authdemo.model.SampleAppUser
+import com.jentel.authdemo.util.FailedLoginFormState
+import com.jentel.authdemo.util.LoginFormState
+import com.jentel.authdemo.util.LoginResult
+import com.jentel.authdemo.util.SuccessfulLoginFormState
 
 class LoginViewModel : ViewModel() {
 

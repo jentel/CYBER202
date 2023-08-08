@@ -1,4 +1,4 @@
-package com.jentel.authdemo
+package com.jentel.authdemo.util
 
 sealed class LoginFormState
 

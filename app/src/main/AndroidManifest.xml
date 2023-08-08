@@ -11,7 +11,7 @@
         tools:targetApi="33"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EnableBiometricLoginActivity"
+            android:name=".ui.EnableBiometricLoginActivity"
             android:label="@string/title_activity_enable_biometric_login"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".ui.MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.LoginActivity"/>
+
     </application>
 
 </manifest>

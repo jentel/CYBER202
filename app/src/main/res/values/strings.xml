@@ -16,4 +16,7 @@
     <string name="prompt_info_description">Sample App is using Android biometric authentication</string>
     <string name="prompt_info_use_app_password">Use app password</string>
     <string name="secret_key_name">biometric_sample_encryption_key</string>
+    <string name="register">REGISTER</string>
+    <string name="do_you_have_an_account">Do you have an account?</string>
+    <string name="login">Login</string>
 </resources>

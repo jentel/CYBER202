@@ -1,4 +1,4 @@
-package com.jentel.authdemo
+package com.jentel.authdemo.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -11,6 +11,14 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.jentel.authdemo.databinding.ActivityEnableBiometricLoginBinding
+import com.jentel.authdemo.model.BiometricPromptUtils
+import com.jentel.authdemo.model.SampleAppUser
+import com.jentel.authdemo.util.CIPHERTEXT_WRAPPER
+import com.jentel.authdemo.util.CryptographyManager
+import com.jentel.authdemo.util.FailedLoginFormState
+import com.jentel.authdemo.util.SHARED_PREFS_FILENAME
+import com.jentel.authdemo.util.SuccessfulLoginFormState
+import com.jentel.authdemo.viewModel.LoginViewModel
 
 class EnableBiometricLoginActivity : AppCompatActivity() {
 

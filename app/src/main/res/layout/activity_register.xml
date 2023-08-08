@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity">
+    tools:context=".ui.RegisterActivity">
+
     <EditText
         android:id="@+id/editTextEmailAddress"
         android:layout_width="237dp"
@@ -45,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:text="LOGIN"
-        android:onClick="login"
+        android:text="@string/register"
+        android:onClick="register"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,22 +70,21 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_weight="0.75"
-            android:text="Do you have not an account?"
+            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
+            android:text="@string/do_you_have_an_account"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textViewRegister"
+            android:id="@+id/textViewLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Register"
-            android:onClick="goToRegister"
+            android:layout_weight="2.6"
+            android:text="@string/login"
+            android:onClick="goToLogin"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
