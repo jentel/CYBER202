@@ -63,11 +63,10 @@ class EnableBiometricLoginActivity : AppCompatActivity() {
                     Context.MODE_PRIVATE,
                     CIPHERTEXT_WRAPPER
                 )
-
-                val intent= Intent(applicationContext,MainActivity::class.java)
-                startActivity(intent)
             }
         }
+        val intent= Intent(applicationContext,MainActivity::class.java)
+        startActivity(intent)
         finish()
     }
 }
